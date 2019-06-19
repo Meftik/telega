@@ -9,13 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 
 @SpringBootApplication
 public class Application  extends SpringBootServletInitializer {
+
     @Autowired
     private UserRepository repository;
 
 
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+
     }
 
 }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface UserRepository  extends MongoRepository<User, String>{
-    @Autowired
- // private  MongoTemplate mongoTemplate ; ругается
+  //  @Autowired
+ // private  MongoTemplate mongoTemplate ;
     public User findByFirstName(String firstName);
     public List<User> findByLastName(String lastName);
 

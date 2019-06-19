@@ -10,7 +10,9 @@ public class User {
     public String firstName;
     public String lastName;
     public String password;
+    public Message message;
     public User() {}
+
 
     public User(String username,String firstName, String lastName,String password) {
         this.firstName = firstName;

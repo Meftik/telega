@@ -53,3 +53,5 @@ a:hover { text-decoration:underline; }
 .logout { float:right; }
 
 .msgln { margin:0 0 2px 0; }
+.block-left{width:50%;height:100px;overflow:auto;float:left;}
+.block-right{width:50%;height:100px;overflow:auto;}
