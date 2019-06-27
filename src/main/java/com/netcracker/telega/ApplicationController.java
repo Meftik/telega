@@ -129,15 +129,25 @@ public class ApplicationController {
     @RequestMapping(params = "Add", method = RequestMethod.GET)
 
     public String Add(Model model,String findUser) {
-        System.out.println(repository.findByUsername("123"));
-        if (true)//repository.findByUsername(findUser)
-             {
+
+        boolean trying=true;
+        if (repository.findByUsername(findUser)==null)model.addAttribute("message1","User Not Found!");
+        else
+        {
             friend = new Friends(user.getUsername(), repository.findByUsername(findUser).getUsername());
-                 friendsRepository.save(friend);
-                 friend = new Friends( repository.findByUsername(findUser).getUsername(),user.getUsername());
-        friendsRepository.save(friend);
+            for (Friends a :  friendsRepository.findAll())
+            {
+                if(a.getFriends().equals(friend.getFriends())&& a.getUsername().equals(friend.getUsername()))trying=false;
+
+            }
+            if(trying) {
+                friendsRepository.save(friend);
+                friend = new Friends(repository.findByUsername(findUser).getUsername(), user.getUsername());
+                friendsRepository.save(friend);
+            }
+            else model.addAttribute("message1","User already add!");
     }
-else  model.addAttribute("message1","User Not Found!");
+
 
 
         model.addAttribute("user1",user );
