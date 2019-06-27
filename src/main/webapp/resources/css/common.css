@@ -6,11 +6,22 @@
     text-align: center;
     background-color: white;
 }
+.btn btn-lg btn-primary btn-block{
 
+    margin-top: 10px;
+    font-weight: 700;
+    color: purple;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+}
 .form-signin {
     width:700px;
     height: 200px;
-    background-color: #182134;
+    background-color: darkslateblue;
     margin: 250px auto 0 auto;
     text-align: center;
 }

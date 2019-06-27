@@ -2,6 +2,8 @@ package com.netcracker.telega;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document
 public class User {
     @Id
@@ -11,6 +13,7 @@ public class User {
     public String lastName;
     public String password;
     public Message message;
+
     public User() {}
 
 

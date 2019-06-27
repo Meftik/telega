@@ -2,7 +2,9 @@
 <head>
     <meta charset="utf-8">
     <title>Create an account</title>
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <style type="text/css">
+        <%@include file="../../resources/css/common.css" %>
+    </style>
 </head>
 
 <body>

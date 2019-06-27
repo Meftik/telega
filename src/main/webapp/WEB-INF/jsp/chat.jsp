@@ -5,18 +5,24 @@
     <title>Chat - Customer Module</title>
     <style type="text/css">
         <%@include file="../../resources/css/style.css" %>
-    </style>users
+    </style>
 </head>
 <div class="block-left">
 
-    <form action="users" method="get">
+    <form action="friends" method="get">
+        <input name="findUser" type="text"   autofocus="true"/>
+        <p>${message1}</p>
+        <input  name="Add" type="submit" value="Add" />
+
         <table border="1">
             <tr>
                 <th>Friends</th>
             </tr>
-            <c:forEach items="${users}" var="user" >
+         <c:forEach items="${friends}" var="friend" >
             <tr>
-                <td>${user.getUsername()}</td>
+                <td>${friend.getFriends()}
+                    <input name="choose" type="submit"   value="${friend.getFriends()}" /></td>
+
 
             </tr>
             </c:forEach>
@@ -28,14 +34,32 @@
     <div id="menu">
         <p class="welcome">Welcome,${message} <b></b></p>
 
-        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
-        <div style="clear:both"></div>
+        <p class="logout"><a id="exit" href="${contextPath}/login">Exit Chat</a></p>
+
     </div>
 
     <div id="chatbox" class="block-right">
-        <c:forEach items="${usermessage}" var="usermsg" >
 
-        <p class="p">${usermsg.getMessage()}</p>
+<c:set var="bool" value="true"/>
+        <c:set var="bool2" value="true"/>
+        <c:forEach items="${usermessage}" var="usermsg" >
+<c:if test="${usermsg.getFrom().equals(user1.getUsername())}">
+            <c:if test="${bool eq true}">
+    <p class="p2">You:</p>
+                <c:set var="bool" value="false"/>
+                <c:set var="bool2" value="true"/>
+            </c:if>
+    <p class="p">${usermsg.getMessage()}</p>
+</c:if>
+            <c:if test="${!usermsg.getFrom().equals(user1.getUsername())}">
+                <c:if test="${bool2 eq true}">
+                    <p class="p3">${user2.getUsername()}:</p>
+                    <c:set var="bool2" value="false"/>
+                    <c:set var="bool" value="true"/>
+                </c:if>
+
+                <p class="p1">${usermsg.getMessage()}</p>
+            </c:if>
         </c:forEach>
     </div>
 

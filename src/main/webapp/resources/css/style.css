@@ -21,7 +21,7 @@ a:hover { text-decoration:underline; }
     padding-bottom:25px;
     background:#EBF4FB;
     width:504px;
-    border:1px solid #ACD8F0; }
+    border:1px solid darkslateblue; }
 
 #loginform { padding-top:18px; }
 
@@ -35,12 +35,12 @@ a:hover { text-decoration:underline; }
     background:#fff;
     height:270px;
     width:430px;
-    border:1px solid #ACD8F0;
+    border:1px solid blueviolet;
     overflow:auto; }
 
 #usermsg {
     width:395px;
-    border:1px solid #ACD8F0; }
+    border:1px solid lightskyblue; }
 
 #submit { width: 60px; }
 
@@ -53,5 +53,9 @@ a:hover { text-decoration:underline; }
 .logout { float:right; }
 
 .msgln { margin:0 0 2px 0; }
-.block-left{width:50%;height:100px;overflow:auto;float:left;}
+.block-left{height:200px;overflow:auto;float:left;}
 .block-right{width:50%;height:100px;overflow:auto;}
+.p1{  text-align:left;text-color:red;}
+.p{  text-align:right;text-color:green;}
+.p3{  text-align:left;text-color:red;}
+.p2{  text-align:right;text-color:green;}

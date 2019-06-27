@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserRepository  extends MongoRepository<User, String>{
   //  @Autowired
  // private  MongoTemplate mongoTemplate ;
-    public User findByFirstName(String firstName);
+    public User findByUsername(String Username);
     public List<User> findByLastName(String lastName);
 
 }
