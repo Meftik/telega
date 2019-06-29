@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface FriendsRepository extends MongoRepository<Friends, String> {
     public List<Friends> findByUsername(String username);
+
 }

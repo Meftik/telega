@@ -76,7 +76,7 @@ public class ApplicationController {
     }
 
     @RequestMapping(params = "choose", method = RequestMethod.GET)
-    public String choose(Model model,String choose, String username) {
+    public String choose(Model model,String choose) {
 
 
         for (User a : repository.findAll())
@@ -84,7 +84,6 @@ public class ApplicationController {
          if(a.getUsername().equals(choose))user2=a;
 
         }
-        System.out.println(user2.getUsername());
         List<Message> Messages=new ArrayList<Message>();
         for (Message a1 : messageRepository.findAll())
         {
@@ -106,6 +105,8 @@ public class ApplicationController {
 
     @RequestMapping(params = "submitmsg", method = RequestMethod.POST)
     public String submitmsg(Model model, String usermsg, String username) {
+        friendsRepository.deleteAll();
+        messageRepository.deleteAll();
         message=new Message(user.getUsername(),user2.getUsername(),usermsg);
         messageRepository.save(message);
         List<Message> Messages=new ArrayList<Message>();
@@ -126,6 +127,39 @@ public class ApplicationController {
 
 
     }
+    @RequestMapping(params = "Yes", method = RequestMethod.GET)
+
+    public String Yes(Model model,@RequestParam String friend1) {
+
+        for (Friends a :  friendsRepository.findAll())
+        {
+            if(a.getFriends().equals(friend1)&& a.getUsername().equals(user.getUsername())) {
+                friend = new Friends( a.getUsername(),a.getFriends(), true);
+                friendsRepository.delete(a);
+                friendsRepository.save(friend);
+            }
+        }
+        model.addAttribute("user1",user );
+        model.addAttribute("user2",user2 );
+        model.addAttribute("friends",friendsRepository.findByUsername(user.getUsername()) );
+        return "chat";
+    }
+    @RequestMapping(params = "Delete", method = RequestMethod.GET)
+
+    public String Delete(Model model,String friend1) {
+
+        for (Friends a :  friendsRepository.findAll())
+        {
+            if(a.getFriends().equals(friend1)&& a.getUsername().equals(user.getUsername()))
+            friendsRepository.delete(a);
+            if(a.getFriends().equals(user.getUsername())&& a.getUsername().equals(friend1))
+                friendsRepository.delete(a);
+        }
+        model.addAttribute("user1",user );
+        model.addAttribute("user2",user2 );
+        model.addAttribute("friends",friendsRepository.findByUsername(user.getUsername()) );
+        return "chat";
+    }
     @RequestMapping(params = "Add", method = RequestMethod.GET)
 
     public String Add(Model model,String findUser) {
@@ -134,7 +168,7 @@ public class ApplicationController {
         if (repository.findByUsername(findUser)==null)model.addAttribute("message1","User Not Found!");
         else
         {
-            friend = new Friends(user.getUsername(), repository.findByUsername(findUser).getUsername());
+            friend = new Friends(user.getUsername(), repository.findByUsername(findUser).getUsername(),true);
             for (Friends a :  friendsRepository.findAll())
             {
                 if(a.getFriends().equals(friend.getFriends())&& a.getUsername().equals(friend.getUsername()))trying=false;
@@ -142,8 +176,10 @@ public class ApplicationController {
             }
             if(trying) {
                 friendsRepository.save(friend);
-                friend = new Friends(repository.findByUsername(findUser).getUsername(), user.getUsername());
-                friendsRepository.save(friend);
+if(!friend.getFriends().equals(user.getUsername())) {
+    friend = new Friends(repository.findByUsername(findUser).getUsername(), user.getUsername(), false);
+    friendsRepository.save(friend);
+}
             }
             else model.addAttribute("message1","User already add!");
     }
@@ -153,6 +189,7 @@ public class ApplicationController {
         model.addAttribute("user1",user );
         model.addAttribute("user2",user2 );
         model.addAttribute("friends",friendsRepository.findByUsername(user.getUsername()) );
+
         return "chat";
 
     }

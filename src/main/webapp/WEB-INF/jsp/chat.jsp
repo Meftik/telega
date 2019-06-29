@@ -18,10 +18,20 @@
             <tr>
                 <th>Friends</th>
             </tr>
-         <c:forEach items="${friends}" var="friend" >
+         <c:forEach items="${friends}" var="friend1" >
             <tr>
-                <td>${friend.getFriends()}
-                    <input name="choose" type="submit"   value="${friend.getFriends()}" /></td>
+                <td>
+                    <input name="friend1" type="hidden"   value="${friend1.getFriends()}" />
+                    <input name="choose" type="submit"   value="${friend1.getFriends()}" />
+                    <input name="Delete" type="submit"   value="Delete" />
+                    <c:if test="${friend1.isAdd() eq false}">
+
+                       <p> Add friend? <p/>
+
+                        <input name="Yes" type="submit"   value="Yes" />
+
+                    </c:if>
+                </td>
 
 
             </tr>
