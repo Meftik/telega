@@ -14,11 +14,7 @@
     <form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
         <div class="form-signin-heading ${error != null ? 'has-error' : ''}">
-            <input name="firstname" type="text" class="form-signin-heading" placeholder="Firstname"
-                   autofocus="true"/>
 
-            <input name="lastname" type="text" class="form-signin-heading" placeholder="Lastname"
-                   autofocus="true"/>
             <input name="username1" type="text" class="form-signin-heading" placeholder="Username"
                    autofocus="true"/>
             <input name="password1" type="password" class="form-signin-heading" placeholder="Password"/>

@@ -11,6 +11,5 @@ public interface UserRepository  extends MongoRepository<User, String>{
   //  @Autowired
  // private  MongoTemplate mongoTemplate ;
     public User findByUsername(String Username);
-    public List<User> findByLastName(String lastName);
 
 }

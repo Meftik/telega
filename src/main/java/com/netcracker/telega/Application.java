@@ -11,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 public class Application  extends SpringBootServletInitializer {
 
     @Autowired
-    private UserRepository repository;
+    private  UserRepository repository;
 
 
     public static void main(String[] args) {
